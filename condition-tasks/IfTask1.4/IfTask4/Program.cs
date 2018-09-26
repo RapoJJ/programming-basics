@@ -3,18 +3,20 @@
 namespace IfTask4
 {
     class Program
-    {   //Käyttäjältä pyydetään 3 lukua. Ohjelma lajittelee luvut nousevaan järjestykseen.
+    {
         static void Main(string[] args)
         {
-            Console.Write("Syötä 1. luku: ");       //1. luku käyttäjältä
+            Console.WriteLine("Käyttäjältä pyydetään 3 lukua. Ohjelma lajittelee luvut nousevaan järjestykseen.");
+
+            Console.Write("Syötä 1. luku: ");
             string userInput = Console.ReadLine();
             int no1 = int.Parse(userInput);
 
-            Console.Write("Syötä 2. luku: ");       //2. luku käyttäjältä
+            Console.Write("Syötä 2. luku: ");
             userInput = Console.ReadLine();
             int no2 = int.Parse(userInput);
 
-            Console.Write("Syötä 3. luku: ");       //3. luku käyttäjältä
+            Console.Write("Syötä 3. luku: ");
             userInput = Console.ReadLine();
             int no3 = int.Parse(userInput);
 
