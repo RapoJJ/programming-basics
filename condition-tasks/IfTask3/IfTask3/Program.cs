@@ -17,24 +17,25 @@ namespace IfTask3
 
             if (isNumber)
             {
-                if (number % 2 == 0)
-                    evenOrOdd = "parillinen";
-                else
-                    evenOrOdd = "pariton";
-
-                if (number == 0)
-                    posOrNeg = "nolla";
-                else if (number > 0)
-                    posOrNeg = "positiivinen";
-                else
-                    posOrNeg = "pariton";
+                {       //Tarkistetaan onko pariton vai parillinen
+                    if (number % 2 == 0)
+                        evenOrOdd = "parillinen";
+                    else
+                        evenOrOdd = "pariton";
+                }
+                {       //Tarkistetaan onko positiivinen, pariton vai nolla
+                    if (number == 0)
+                        posOrNeg = "nolla";
+                    else if (number > 0)
+                        posOrNeg = "positiivinen";
+                    else
+                        posOrNeg = "pariton";
+                }
             }
             else
                 Console.WriteLine("Syöte ei ole luku");
 
             Console.WriteLine($"Syöttämäsi luku {number} on {posOrNeg} ja {evenOrOdd}");
-
-
         }
     }
 }
