@@ -6,13 +6,13 @@ namespace IfTask3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ohjelma selvittää onko luku positiivinen vai negatiivinen" +
-                "ja onko luku pariton vai parillinen");
-            Console.Write("Syötä luku: ");
-            string userInput = Console.ReadLine();
+            //Ohjelma selvittää onko luku positiivinen vai negatiivinen sekä onko luku pariton vai parillinen.
             int number = 0;
             string posOrNeg = "";
             string evenOrOdd = "";
+
+            Console.Write("Syötä luku: ");
+            string userInput = Console.ReadLine();
             bool isNumber = int.TryParse(userInput, out number);
 
             if (isNumber)
@@ -23,13 +23,13 @@ namespace IfTask3
                     else
                         evenOrOdd = "pariton";
                 }
-                {       //Tarkistetaan onko positiivinen, pariton vai nolla
+                {       //Tarkistetaan onko positiivinen, negatiivinen vai nolla
                     if (number == 0)
                         posOrNeg = "nolla";
                     else if (number > 0)
                         posOrNeg = "positiivinen";
                     else
-                        posOrNeg = "pariton";
+                        posOrNeg = "negatiivinen";
                 }
             }
             else
