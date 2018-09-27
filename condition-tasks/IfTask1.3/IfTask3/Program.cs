@@ -33,9 +33,9 @@ namespace IfTask3
                 }
             }
             else
-                Console.WriteLine("Syöte ei ole luku");
+                Console.WriteLine("Syöte ei ole luku.");
 
-            Console.WriteLine($"Syöttämäsi luku {number} on {posOrNeg} ja {evenOrOdd}");
+            Console.WriteLine($"Syöttämäsi luku {number} on {posOrNeg} ja {evenOrOdd}.");
         }
     }
 }

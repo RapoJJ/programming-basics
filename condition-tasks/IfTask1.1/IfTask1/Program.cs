@@ -6,8 +6,8 @@ namespace IfTask1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Selvitetään onko annettu luku positiivinen, negatiivinen vai nolla");
-            Console.Write("Anna luku: ");
+            Console.WriteLine("Selvitetään onko annettu luku positiivinen, negatiivinen vai nolla.");
+            Console.Write("Syötä luku: ");
             string userInput = Console.ReadLine();
             int number = int.Parse(userInput);
             if (number == 0)
@@ -15,7 +15,7 @@ namespace IfTask1
             else if (number < 0)
                 Console.WriteLine($"Numero {number} on negatiivinen!");
             else
-                Console.WriteLine($"Numero {number} on positiivinen");
+                Console.WriteLine($"Numero {number} on positiivinen!");
         }
     }
 }
