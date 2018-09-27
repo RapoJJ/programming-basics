@@ -19,7 +19,7 @@ namespace IfTask2
                 discount = 1;
             else if (userAge >= 65)
                 discount = 0.5;
-            else if (userAge > 7 && userAge < 15)   
+            else if (userAge >= 7 && userAge <= 15)   
                 discount = 0.5;
             else                    //If users age doesnt grant a discount
             {
