@@ -6,7 +6,7 @@ namespace IfTask3
     {
         static void Main(string[] args)
         {
-            //Ohjelma selvittää onko luku positiivinen vai negatiivinen sekä onko luku pariton vai parillinen.
+            Console.WriteLine("Ohjelma selvittää onko luku positiivinen vai negatiivinen sekä onko luku pariton vai parillinen.");
             int number = 0;
             string posOrNeg = "";
             string evenOrOdd = "";

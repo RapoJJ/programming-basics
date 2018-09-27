@@ -6,7 +6,15 @@ namespace IfTask2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            double ticketPrice = 16.00;
+            int discount = 0;
+
+
+
+
+
+
+
         }
     }
 }

@@ -16,8 +16,6 @@ namespace IfTask1
                 Console.WriteLine($"Numero {number} on negatiivinen!");
             else
                 Console.WriteLine($"Numero {number} on positiivinen");
-
-
         }
     }
 }
