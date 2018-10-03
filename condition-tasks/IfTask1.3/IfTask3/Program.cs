@@ -17,20 +17,19 @@ namespace IfTask3
 
             if (isNumber)
             {
-                {       //Tarkistetaan onko pariton vai parillinen
-                    if (number % 2 == 0)
-                        evenOrOdd = "parillinen";
-                    else
-                        evenOrOdd = "pariton";
-                }
-                {       //Tarkistetaan onko positiivinen, negatiivinen vai nolla
-                    if (number == 0)
-                        posOrNeg = "nolla";
-                    else if (number > 0)
-                        posOrNeg = "positiivinen";
-                    else
-                        posOrNeg = "negatiivinen";
-                }
+                //Tarkistetaan onko pariton vai parillinen
+                if (number % 2 == 0)
+                    evenOrOdd = "parillinen";
+                else
+                    evenOrOdd = "pariton";
+
+                //Tarkistetaan onko positiivinen, negatiivinen vai nolla
+                if (number == 0)
+                    posOrNeg = "nolla";
+                else if (number > 0)
+                    posOrNeg = "positiivinen";
+                else
+                    posOrNeg = "negatiivinen";
             }
             else
                 Console.WriteLine("Syöte ei ole luku.");
