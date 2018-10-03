@@ -6,18 +6,20 @@ namespace LoopTask1
     {
         static void Main(string[] args)
         {
-
-            Console.WriteLine("Ohjelma tulostaa käyttäjän antaman luvun kertoman.");
+            Console.WriteLine("Ohjelma tulostaa käyttäjän kysytyn luvun kertoman.");
             Console.Write("Syötä luku: ");
             string userInput = Console.ReadLine();
-            int number = 0;
-            bool isNumber = int.TryParse(userInput, out number);
+            bool isNumber = int.TryParse(userInput, out int number);
+            int answer = 1;
 
-
-            if (isNumber)
-                if (number >= 1)
-                    int factorial = number
-
+            if (isNumber && number >= 1)
+            {
+                for (int i = 1; i <= number; i++)
+                    answer = answer * i;
+                Console.WriteLine($"Antamasi luvun ({userInput}) kertoma: {answer}");
+            }
+            else
+                Console.WriteLine("Antamasi syöte ei kelpaa");
         }
     }
 }
