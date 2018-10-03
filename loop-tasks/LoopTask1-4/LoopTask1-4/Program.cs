@@ -19,7 +19,7 @@ namespace LoopTask1_4
                         sum = sum + i;
                 else
                     for (int i = 0; i >= number; i--)
-                        sum = sum - i;
+                        sum = sum + i;
                 Console.WriteLine($"Vastaus: {sum}");
             }
             else
