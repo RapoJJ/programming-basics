@@ -6,26 +6,27 @@ namespace LoopTask1_5
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ohjelma käyttäjän syöttämän luvun ensimmäisen parittoman ja parillisen lukujen summan tai erotuksen. ");
-            Console.Write("Syötä luku: ");
-            string userInput = Console.ReadLine();
-            bool isNumber = int.TryParse(userInput, out int number);
             int oddSum = 0;
             int evenSum = 0;
 
-            if (isNumber)
+            Console.WriteLine("Ohjelma laskee N:n ensimmäisen parittoman ja parillisen lukujen summan tai erotuksen.");
+            Console.Write("Syötä luku: ");  //Asking user for input
+            string userInput = Console.ReadLine();
+            bool isNumber = int.TryParse(userInput, out int number);    //checking if the input was number
+
+            if (isNumber)           
             {
-                if (number > 0)
+                if (number > 0)             //If the input number was positive
                     for (int i = 0; i <= number; i++)
-                        if (i % 2 == 0)
+                        if (i % 2 == 0)     //If i is even
                             evenSum = evenSum + i;
-                        else
+                        else                //i is odd
                             oddSum = oddSum + i;
-                else
+                else                        //If the input number was negative
                     for (int i = 0; i >= number; i--)
-                        if (i % 2 == 0)
+                        if (i % 2 == 0)     //if i is even
                             evenSum = evenSum + i;
-                        else
+                        else                //i is odd
                             oddSum = oddSum + i;
                 Console.WriteLine($"Vastaus: Parittomien summa = {oddSum}, Parillisten summa = {evenSum}");
             }
