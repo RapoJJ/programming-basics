@@ -9,12 +9,12 @@ namespace LoopTask1_3
             int oddSum = 0;
             int evenSum = 0;
 
-            Console.WriteLine("Ohjelma käyttäjän syöttämän luvun ensimmäisen parittoman ja parillisen lukujen summan. ");
-            Console.Write("Syötä luku: ");
+            Console.WriteLine("Ohjelma laskee N:n ensimmäisen parittoman ja parillisen lukujen summan.");
+            Console.Write("Syötä luku: ");      //Asking user for input
             string userInput = Console.ReadLine();
-            bool isNumber = int.TryParse(userInput, out int number);
+            bool isNumber = int.TryParse(userInput, out int number);        //checking if the input was number
 
-            if (isNumber && number >= 1)
+            if (isNumber && number >= 1)        //doing the loop if input was number and atleast 1
             {
                 for (int i = 1; i <= number; i++)
                 {
