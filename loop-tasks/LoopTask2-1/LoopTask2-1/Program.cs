@@ -7,14 +7,15 @@ namespace LoopTask2_1
         static void Main(string[] args)
         {
             Console.WriteLine("Ohjelma tulostaa kokonaisluvut 1-10 ja niiden neliöjuuret");
-            Console.WriteLine("Luku   Neliöjuuri");
+            Console.WriteLine("Luku\tNeliöjuuri");
             double square = 1;
-            double i = 1;
+            int i = 1;
 
             for (i = 1; i <= 10; i++)
             { 
                 square = Math.Sqrt(i);
-                Console.WriteLine($"{i}  {square}");
+                square = Math.Round(square, 2); //Rounding the squareroot to 2 decimal places
+                Console.WriteLine($"{i}\t{square}");
             }
         }
     }
