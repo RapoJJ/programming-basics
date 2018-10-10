@@ -14,7 +14,7 @@ namespace LoopTask2_1
             for (i = 1; i <= 10; i++)
             { 
                 square = Math.Sqrt(i);
-                square = Math.Round(square, 2); //Rounding the squareroot to 2 decimal places
+                square = Math.Round(square, 2);
                 Console.WriteLine($"{i}\t{square}");
             }
         }

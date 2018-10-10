@@ -14,12 +14,13 @@ namespace LoopTask2_6
             int countOfSix = 0;
             Random rnd = new Random();
 
-
             do
             {
                 result = rnd.Next(1, 7);
                 if (result == 6)
+                {
                     countOfSix++;
+                }
                 Console.WriteLine($"{i}. {result}");
                 i++;
             } while (i <= 1000);

@@ -23,7 +23,6 @@ namespace LoopTask2_4
                 do
                 {
                     throwResult = rnd.Next(2);
-                    //Console.WriteLine(throwResult);
                     i++;
                     if (throwResult == 0)
                         tailsAmount++;

@@ -16,8 +16,8 @@ namespace LoopTask2_3
                 Console.Write($"Rivi {i} ");
                 for (int j = 1; j <= 5; j++)
                 {
-                    number = rnd.Next(51); //New random number [0-50]
-                    if (j == 5)         //If printing the last number of the row (Each row has 5 numbers)
+                    number = rnd.Next(51);
+                    if (j == 5)         
                         Console.WriteLine($"{number}");
                     else
                         Console.Write($"{number}, ");
