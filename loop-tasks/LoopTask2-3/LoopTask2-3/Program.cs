@@ -9,7 +9,7 @@ namespace LoopTask2_3
             Console.WriteLine("Ohjelma tulostaa 20 satunnaista kokonaislukua väliltä [0-50].\n");
             Console.WriteLine("Vastaus:");
             Random rnd = new Random();
-            int number = 1;
+            int number;
 
             for (int i = 1; i <= 4; i++)
             {
