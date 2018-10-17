@@ -8,7 +8,7 @@ namespace FunctionTask2Class
         {
             int x, y;
             Intro(out x, out y);
-            Console.WriteLine($"{SmallerNumber(x, y)}");
+            PrintData(SmallerNumber(x, y));
         }
 
         static void Intro(out int number1, out int number2)
@@ -34,6 +34,11 @@ namespace FunctionTask2Class
             {
                 return $"Luku {b} on pienempi kuin {a}";
             }
+        }
+
+        static void PrintData(string data)
+        {
+            Console.WriteLine(data);
         }
     }
 }
