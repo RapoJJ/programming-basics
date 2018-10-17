@@ -6,8 +6,7 @@ namespace FunctionTask2Class
     {
         static void Main(string[] args)
         {
-            int x, y;
-            Intro(out x, out y);
+            Intro(out int x, out int y);
             PrintData(SmallerNumber(x, y));
         }
 
