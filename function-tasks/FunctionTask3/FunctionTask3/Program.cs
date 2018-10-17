@@ -19,7 +19,7 @@ namespace FunctionTask3
                 Console.Write("Syötä luku (1-20): ");
                 bool isNumber = int.TryParse(Console.ReadLine(), out int userInput);
 
-                if (isNumber && userInput > lowerBound && userInput < upperbound)
+                if (isNumber && userInput >= lowerBound && userInput <= upperbound)
                 {
                     allowedNumber = userInput;
                     break;
