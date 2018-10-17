@@ -8,9 +8,8 @@ namespace FunctionTask1
         {   //Programm prints out user defined amount of stars, uses function to write the stars
             while (true)
             {
-                int userInput;
                 Console.Write("Syötä tähtien määrä: ");
-                bool isNumber = int.TryParse(Console.ReadLine(), out userInput);
+                bool isNumber = int.TryParse(Console.ReadLine(), out int userInput);
 
                 if (isNumber && userInput > 0)
                 {
@@ -27,7 +26,7 @@ namespace FunctionTask1
         {
             string value = "";
 
-            for (int i = 0; i < amount; i++)
+            for (int i = 1; i <= amount; i++)
             {
                 value += "*";
             }
