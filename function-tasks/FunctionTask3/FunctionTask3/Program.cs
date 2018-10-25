@@ -7,7 +7,7 @@ namespace FunctionTask3
         static void Main(string[] args)
         {
             Console.WriteLine("Käyttäjä pyydetään luku väliltä 1-20, lukua kysytään uudestaan jos se " +
-                "ei ole annetulta väliltä");
+                "ei ole annetulta väliltä.");
             int number = NumberFromRange(1, 20);
             Console.WriteLine($"Syöttämäsi luku {number} on väliltä 1-20.");
         }
