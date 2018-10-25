@@ -16,8 +16,8 @@ namespace FunctionTask2
 
                 if (isNumber1 && isNumber2)
                 {
-                    Console.WriteLine($"Luku {smallerNumber(userInput1, userInput2)} on pienempi kuin " +
-                        $"{biggerNumber(userInput1, userInput2)}.");
+                    Console.WriteLine($"Luku {SmallerNumber(userInput1, userInput2)} on pienempi kuin " +
+                        $"{BiggerNumber(userInput1, userInput2)}.");
                     break;
                 }
                 else
@@ -26,7 +26,7 @@ namespace FunctionTask2
                 }
             }
         }
-        static int smallerNumber(int number1, int number2)
+        static int SmallerNumber(int number1, int number2)
         {
             int smallerNumber;
 
@@ -40,7 +40,7 @@ namespace FunctionTask2
             }
             return smallerNumber;
         }
-        static int biggerNumber(int number1, int number2)
+        static int BiggerNumber(int number1, int number2)
         {
             int biggerNumber;
 
