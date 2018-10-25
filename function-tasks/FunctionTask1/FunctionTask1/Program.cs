@@ -13,7 +13,7 @@ namespace FunctionTask1
 
                 if (isNumber && userInput > 0)
                 {
-                    Console.WriteLine($"{amountOfStars(userInput)}");
+                    Console.WriteLine($"{AmountOfStars(userInput)}");
                     break;
                 }
                 else
@@ -22,7 +22,7 @@ namespace FunctionTask1
                 }
             }
         }
-        static string amountOfStars(int amount)
+        static string AmountOfStars(int amount)
         {
             string value = "";
 
