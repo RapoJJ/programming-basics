@@ -29,7 +29,7 @@ namespace FunctionTask2
         static int SmallerNumber(int number1, int number2)
         {
             int smallerNumber;
-            
+
             if (number1 > number2)
             {
                 smallerNumber = number2;
