@@ -8,13 +8,13 @@ namespace FunctionTask4
         {
             Console.WriteLine("Ohjelma pyytää käyttäjältä 10 positiivista kokonaislukua ja palauttaa niistä suurimman.");
 
-            int bigNumber = 0;
-            Console.WriteLine($"{BiggestNumber(ref bigNumber)} ja {bigNumber}");
+            int number = 0;
+            Console.WriteLine($"Syöttämistäsi luvuista suurin oli {BiggestNumber(ref number)} ja se oli {number}. luku.");
         }
         static int BiggestNumber(ref int maxNumberSlot)
         {
-            int maxNumber = 0;
-            string numbers = "";
+            int bigNumber = 0;
+            string numbersInputted = "";
 
             Console.WriteLine("Syötä 10 positiivista lukua.");
 
@@ -25,10 +25,10 @@ namespace FunctionTask4
 
                 if (isNumber && userInput > 0)
                 {
-                    numbers += $"{userInput} ";
-                    if (userInput > maxNumber)
+                    numbersInputted += $"{userInput} ";
+                    if (userInput > bigNumber)
                     {
-                        maxNumber = userInput;
+                        bigNumber = userInput;
                         maxNumberSlot = i;
                     }
                     i++;
@@ -38,8 +38,8 @@ namespace FunctionTask4
                     Console.WriteLine("Ei sallittu syöte. Syötteen pitää olla positiivinen luku!");
                 }
             }
-            Console.WriteLine($"Syötit luvut: {numbers}");
-            return maxNumber;
+            Console.WriteLine($"Syötit luvut: {numbersInputted}");
+            return bigNumber;
         }
     }
 }
