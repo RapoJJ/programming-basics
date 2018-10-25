@@ -24,13 +24,13 @@ namespace FunctionTask1
         }
         static string AmountOfStars(int amount)
         {
-            string value = "";
+            string stars = "";
 
             for (int i = 1; i <= amount; i++)
             {
-                value += "*";
+                stars += "*";
             }
-            return value;
+            return stars;
         }
     }
 }
