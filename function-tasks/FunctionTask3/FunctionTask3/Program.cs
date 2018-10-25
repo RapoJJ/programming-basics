@@ -8,10 +8,10 @@ namespace FunctionTask3
         {
             Console.WriteLine("Käyttäjä pyydetään luku väliltä 1-20, lukua kysytään uudestaan jos se " +
                 "ei ole annetulta väliltä");
-            int number = numberFromRange(1, 20);
+            int number = NumberFromRange(1, 20);
             Console.WriteLine($"Syöttämäsi luku {number} on väliltä 1-20.");
         }
-        static int numberFromRange(int lowerBound, int upperbound)
+        static int NumberFromRange(int lowerBound, int upperbound)
         {
             int allowedNumber;
             while (true)
@@ -22,11 +22,12 @@ namespace FunctionTask3
                 if (isNumber && userInput >= lowerBound && userInput <= upperbound)
                 {
                     allowedNumber = userInput;
+                    Console.WriteLine();
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("Ei sallittu syöte");
+                    Console.WriteLine("Syöttämäsi luku ei ollut väliltä 1-20.");
                 }
             }
             return allowedNumber;
