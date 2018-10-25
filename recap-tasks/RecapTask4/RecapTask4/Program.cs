@@ -6,7 +6,8 @@ namespace RecapTask4
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ohjelmalle syötetään kaksi lukua. Ohjelma tulostaa yhteen-, vähennys-, kerto- ja jakolasku näistä luvuista");
+            Console.WriteLine("Ohjelmalle syötetään kaksi lukua. Ohjelma tulostaa yhteen-, " +
+                "vähennys-, kerto- ja jakolasku näistä luvuista.");
 
             //Numbers(out double number1, out double number2);
 
@@ -25,7 +26,7 @@ namespace RecapTask4
         {
             while (true)
             {
-                Console.Write("Syötä 1. luku: ");
+                Console.Write("Syötä luku: ");
                 bool isNumber = double.TryParse(Console.ReadLine(), out x);
 
                 if (isNumber)
