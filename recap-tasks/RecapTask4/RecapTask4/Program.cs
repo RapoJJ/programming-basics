@@ -16,7 +16,6 @@ namespace RecapTask4
             number1 = Number(number1);
             number2 = Number(number2);
 
-
             Console.WriteLine($"{Rounder(number1)} + {Rounder(number2)} = {Rounder(Sum(number1, number2))}");
             Console.WriteLine($"{Rounder(number1)} - {Rounder(number2)} = {Rounder(Difference(number1, number2))}");
             Console.WriteLine($"{Rounder(number1)} * {Rounder(number2)} = {Rounder(Multiply(number1, number2))}");
