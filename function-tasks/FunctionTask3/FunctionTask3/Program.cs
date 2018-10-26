@@ -11,26 +11,23 @@ namespace FunctionTask3
             int number = NumberFromRange(1, 20);
             Console.WriteLine($"Syöttämäsi luku {number} on väliltä 1-20.");
         }
-        static int NumberFromRange(int lowerBound, int upperbound)
+        static int NumberFromRange(int lowerBound, int upperBound)
         {
-            int allowedNumber;
             while (true)
             {
                 Console.Write("Syötä luku (1-20): ");
                 bool isNumber = int.TryParse(Console.ReadLine(), out int userInput);
 
-                if (isNumber && userInput >= lowerBound && userInput <= upperbound)
+                if (isNumber && userInput >= lowerBound && userInput <= upperBound)
                 {
-                    allowedNumber = userInput;
                     Console.WriteLine();
-                    break;
+                    return userInput;
                 }
                 else
                 {
                     Console.WriteLine("Syöttämäsi luku ei ollut väliltä 1-20.");
                 }
             }
-            return allowedNumber;
         }
     }
 }
