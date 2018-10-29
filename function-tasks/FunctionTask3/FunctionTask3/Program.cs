@@ -15,7 +15,7 @@ namespace FunctionTask3
         {
             while (true)
             {
-                Console.Write("Syötä luku (1-20): ");
+                Console.Write($"Syötä luku ({lowerBound}-{upperBound}): ");
                 bool isNumber = int.TryParse(Console.ReadLine(), out int userInput);
 
                 if (isNumber && userInput >= lowerBound && userInput <= upperBound)
@@ -25,7 +25,7 @@ namespace FunctionTask3
                 }
                 else
                 {
-                    Console.WriteLine("Syöttämäsi luku ei ollut väliltä 1-20.");
+                    Console.WriteLine($"Syöttämäsi luku ei ollut väliltä {lowerBound}-{upperBound}.");
                 }
             }
         }
