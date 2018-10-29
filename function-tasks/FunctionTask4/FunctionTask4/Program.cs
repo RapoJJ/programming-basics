@@ -11,7 +11,7 @@ namespace FunctionTask4
             int number = 0;
             Console.WriteLine($"Syöttämistäsi luvuista suurin oli {BiggestNumber(ref number)} ja se oli {number}. luku.");
         }
-        static int BiggestNumber(ref int maxNumberSlot)
+        static int BiggestNumber(ref int bigNumberSlot)
         {
             int bigNumber = 0;
             string numbersInputted = "";
@@ -29,7 +29,7 @@ namespace FunctionTask4
                     if (userInput > bigNumber)
                     {
                         bigNumber = userInput;
-                        maxNumberSlot = i;
+                        bigNumberSlot = i;
                     }
                     i++;
                 }
