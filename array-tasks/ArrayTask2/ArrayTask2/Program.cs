@@ -6,8 +6,8 @@ namespace ArrayTask2
     {
         static void Main(string[] args)
         {
-            int sum = 0;
-            int average;
+            double sum = 0;
+            double average;
             int[] numbers = new int[100];
             Random rnd = new Random();
 
