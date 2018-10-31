@@ -7,7 +7,7 @@ namespace ArrayTask1
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            decimal[] productPrice = new decimal[] { 7.96m, 72.0m, 99.90m };
+            decimal[] productPrice = new decimal[] { 7.96m, 72.00m, 99.90m };
             int[] productAmount = new int[] { 1, 3, 2 };
             decimal[] productTotalPrice = new decimal[3];
 
