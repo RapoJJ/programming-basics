@@ -21,7 +21,7 @@ namespace StringTask3
         static int CountOfChar(ref string x, ref char y)
         {
             int count = 0;
-            x = x.ToLower();
+            x = x.ToUpper();
             for (int i = 0; i < x.Length; i++)
             {
                 if (x[i] == y)
@@ -34,7 +34,7 @@ namespace StringTask3
         static char ChooseChar ()
         {
             Console.Write("Syötä kirjain, jonka lukumäärä lasketaan: ");
-            char UserInput = Char.ToLower(Console.ReadKey().KeyChar);
+            char UserInput = Char.ToUpper(Console.ReadKey().KeyChar);
             Console.WriteLine();
             return UserInput;
         }
