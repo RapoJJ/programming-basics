@@ -9,6 +9,8 @@ namespace ArrayTaskLottery
             Console.WriteLine("Ohjelma arpoo 7 eri lukua 1-40 ja tulostaa arvotut luvut pienimmästä suurimpaan.");
 
             int rng, extraNumber, doubleUp;
+            string extraNo = "";
+            string lottoResult = "Loton oikea rivi on: ";
             Random rnd = new Random();
             int[] lottery = new int[40];
 
@@ -23,36 +25,35 @@ namespace ArrayTaskLottery
                 else
                     i--;
             }
-            Console.Write("Loton oikearivi on:");
+            for (int i = 0; i < lottery.Length; i++)
+            {
+                extraNumber = rnd.Next(40);
+                if (lottery[extraNumber] == 0)
+                {
+                    lottery[extraNumber] = 2;
+                    break;
+                }
+
+            }
             for (int i = 0; i < lottery.Length; i++)
             {
                 if (lottery[i] == 1)
                 {
-                    Console.Write($"{i},");
+                    lottoResult += $"{i},";
                 }
 
+                else if (lottery[i] == 2)
+                {
+                    extraNo = $"Lisänumero on: {i}";
+                }
             }
-            extraNumber = rnd.Next(40);
-            lottery[extraNumber] = 2;
+
+            lottoResult = lottoResult.Remove(lottoResult.Length - 1);
+            Console.WriteLine(lottoResult);
+            Console.WriteLine(extraNo);
 
             doubleUp = rnd.Next(40);
-            lottery[doubleUp] = 3;
-
-            for (int i = 0; i < lottery.Length; i++)
-            {
-                if (lottery[i] == 2)
-                {
-                    Console.WriteLine($"\nLisänumero: {i}");
-                }
-
-            }
-            for (int i = 0; i < lottery.Length; i++)
-            {
-                if (lottery[i] == 3)
-                {
-                    Console.WriteLine($"Tuplausnumero: {i}");
-                }
-            }
+            Console.WriteLine($"Tuplausnumero: {doubleUp}");
         }
     }
 }
