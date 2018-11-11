@@ -6,18 +6,14 @@ namespace ArrayTask3_3
     {
         static void Main(string[] args)
         {
-            int[] arrT_1 = new int[10];
-            int[] arrT_2 = new int[10];
-            int[] arrT_3 = new int[10];
-
             Intro();
-            arrT_1 = RndArray(arrT_1.Length);
+            int[] arrT_1 = RndArray(10);
             PrintData(ref arrT_1, "arrT_1");
 
-            arrT_2 = RndArray(arrT_2.Length);
+            int[] arrT_2 = RndArray(10);
             PrintData(ref arrT_2, "arrT_2");
 
-            arrT_3 = CompareArrays(ref arrT_1, arrT_2, arrT_1.Length);
+            int[] arrT_3 = CompareArrays(ref arrT_1, arrT_2, 10);
             PrintData(ref arrT_3, "arrT_3");
         }
         static void Intro()
