@@ -10,7 +10,7 @@ namespace StringTask2
 
             string input = UserInput();
 
-            Console.WriteLine($"Syöte: {input}\nMuutettu syöte: {ReplacedString(ref input)}");
+            Console.WriteLine($"Syöte: {input}\nMuutettu syöte: {ReplacedString(input)}");
         }
         static string UserInput()
         {
@@ -18,7 +18,7 @@ namespace StringTask2
             string userInput = Console.ReadLine();
             return userInput;
         }
-        static string ReplacedString (ref string x)
+        static string ReplacedString (string x)
         {
             string stringNew = x.Replace("e", "@");
             return stringNew;
