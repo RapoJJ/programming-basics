@@ -9,7 +9,7 @@ namespace StringTask3
             Console.WriteLine("Ohjelma laskee käyttäjän syöttämästä syötteestä vaikkapa L kirjainten lukumäärän.");
             string strInput = UserInput();
             char countThis = ChooseChar();
-            Console.WriteLine($"Syöte: {strInput}\nSyötteessä on {CountOfChar(ref strInput, ref countThis)} {countThis} kirjainta");
+            Console.WriteLine($"Syöte: {strInput}\nSyötteessä on {CountOfChar(strInput, countThis)} {countThis} kirjainta");
         }
         static string UserInput()
         {
@@ -18,7 +18,7 @@ namespace StringTask3
             return userInput;
         }
 
-        static int CountOfChar(ref string x, ref char y)
+        static int CountOfChar(string x, char y)
         {
             int count = 0;
             x = x.ToUpper();
