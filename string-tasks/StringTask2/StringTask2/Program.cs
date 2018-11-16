@@ -7,11 +7,14 @@ namespace StringTask2
         static void Main(string[] args)
         {
             Console.WriteLine("Ohjelma muuttaa käyttäjän syöttämästä syötteestä e kirjaimet @ merkiksi.");
-
             string input = UserInput();
 
             Console.WriteLine($"Syöte: {input}\nMuutettu syöte: {ReplacedString(input)}");
         }
+        /// <summary>
+        /// Asks user for input and saves it as string.
+        /// </summary>
+        /// <returns></returns>
         static string UserInput()
         {
             Console.Write("Syötä lause: ");
@@ -20,8 +23,8 @@ namespace StringTask2
         }
         static string ReplacedString (string x)
         {
-            string stringNew = x.Replace("e", "@");
-            return stringNew;
+            string newString = x.Replace("e", "@");
+            return newString;
         }
     }
 }
