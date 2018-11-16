@@ -9,20 +9,17 @@ namespace StringTask1
             Console.WriteLine("Ohjelma ilmoittaa käyttäjän syöttämästä syötteestä merkkien lukumäärän.");
             string strInput = UserInput();
 
-            Console.WriteLine($"Syötteesi oli {strInput}.\nSiinä on {LengthOfString(strInput)} merkkiä.");
-
+            Console.WriteLine($"Syötteesi oli {strInput}.\nSiinä on {strInput.Length} merkkiä.");
         }
+        /// <summary>
+        /// Asks user for input and saves it as string.
+        /// </summary>
+        /// <returns></returns>
         static string UserInput()
         {
             Console.Write("Syötä lause: ");
             string userInput = Console.ReadLine();
             return userInput;
-        }
-
-        static int LengthOfString(string x)
-        {
-            int length = x.Length;
-            return length;
         }
     }
 }
