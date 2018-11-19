@@ -10,10 +10,9 @@ namespace StringTaskVocalCalc
             string word = UserInput();
             //Console.WriteLine($"Syötteessä '{word}' on {VowelCount(word)} vokaalia.");
 
-            Console.WriteLine($"Sanassa {word} on {word.Length - VowelsRemovedClass(word).Length} vokaalia.");
+            Console.WriteLine($"Sanassa {word} on {word.Length - VowelsRemoverClass(word).Length} vokaalia.");
 
             //Console.WriteLine($"Sanassa {word} on {OnlyVowels(word).Length} vokaalia.");
-
         }
         /// <summary>
         /// Asks user for input and saves it as string.
@@ -52,7 +51,7 @@ namespace StringTaskVocalCalc
         /// </summary>
         /// <param name="d"></param>
         /// <returns></returns>
-        static string VowelsRemoved(string d)
+        static string VowelsRemover(string d)
         {
             d = d.ToLower();
             for (int i = 0; i < d.Length; i++)
@@ -92,7 +91,7 @@ namespace StringTaskVocalCalc
         /// </summary>
         /// <param name="d"></param>
         /// <returns></returns>
-        static string VowelsRemovedClass(string d)
+        static string VowelsRemoverClass(string d)
         {
             string vowels = "aieouyöä";
             d = d.ToLower();
@@ -105,6 +104,7 @@ namespace StringTaskVocalCalc
                     {
                         d = d.Remove(i, 1);
                         i--;
+                        break;
                     }
                 }
             }
