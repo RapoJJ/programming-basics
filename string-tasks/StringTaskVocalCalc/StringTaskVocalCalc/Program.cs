@@ -8,9 +8,9 @@ namespace StringTaskVocalCalc
         {
             Console.WriteLine("Ohjelma laskee käyttäjän syöttämästä tiedosta vokaalien lukumäärän.");
             string word = UserInput();
-            Console.WriteLine($"Syötteessä '{word}' on {VowelCount(word)} vokaalia.");
+            //Console.WriteLine($"Syötteessä '{word}' on {VowelCount(word)} vokaalia.");
 
-            //Console.WriteLine($"Sanassa {word} on {word.Length - VowelsRemoved(word).Length} vokaalia.");
+            Console.WriteLine($"Sanassa {word} on {word.Length - VowelsRemovedClass(word).Length} vokaalia.");
 
             //Console.WriteLine($"Sanassa {word} on {OnlyVowels(word).Length} vokaalia.");
 
@@ -21,7 +21,7 @@ namespace StringTaskVocalCalc
         /// <returns></returns>
         static string UserInput()
         {
-            Console.Write("Syötä lause: ");
+            Console.Write("Syötä sana tai lause: ");
             string userInput = Console.ReadLine();
             return userInput;
         }
@@ -30,15 +30,15 @@ namespace StringTaskVocalCalc
         /// Returns count of vowels as int.
         /// sentence = any string
         /// </summary>
-        /// <param name="sentence"></param>
+        /// <param name="d"></param>
         /// <returns></returns>
-        static int VowelCount(string sentence)
+        static int VowelCount(string d)
         {
-            sentence = sentence.ToLower();
+            d = d.ToLower();
             int count = 0;
-            for (int i = 0; i < sentence.Length; i++)
+            for (int i = 0; i < d.Length; i++)
             {
-                if (sentence[i] == 'a' || sentence[i] == 'e' || sentence[i] == 'i' || sentence[i] == 'o' || sentence[i] == 'u' || sentence[i] == 'y' || sentence[i] == 'ä' || sentence[i] == 'ö')
+                if (d[i] == 'a' || d[i] == 'e' || d[i] == 'i' || d[i] == 'o' || d[i] == 'u' || d[i] == 'y' || d[i] == 'ä' || d[i] == 'ö')
                 {
                     count++;
                 }
@@ -50,40 +50,65 @@ namespace StringTaskVocalCalc
         /// Returns string without vowels.
         /// sentence = any string
         /// </summary>
-        /// <param name="sentence"></param>
+        /// <param name="d"></param>
         /// <returns></returns>
-        static string VowelsRemoved(string sentence)
+        static string VowelsRemoved(string d)
         {
-            sentence = sentence.ToLower();
-            for (int i = 0; i < sentence.Length; i++)
+            d = d.ToLower();
+            for (int i = 0; i < d.Length; i++)
             {
-                if (sentence[i] == 'a' || sentence[i] == 'e' || sentence[i] == 'i' || sentence[i] == 'o' || sentence[i] == 'u' || sentence[i] == 'y' || sentence[i] == 'ä' || sentence[i] == 'ö')
+                if (d[i] == 'a' || d[i] == 'e' || d[i] == 'i' || d[i] == 'o' || d[i] == 'u' || d[i] == 'y' || d[i] == 'ä' || d[i] == 'ö')
                 {
-                    sentence = sentence.Remove(i, 1);
+                    d = d.Remove(i, 1);
                     i--;
                 }
             }
-            return sentence;
+            return d;
         }
         /// <summary>
         /// Deletes anything that isn't vowel from string
         /// Returns string with only vowels.
         /// sentence = any string
         /// </summary>
-        /// <param name="sentence"></param>
+        /// <param name="d"></param>
         /// <returns></returns>
-        static string OnlyVowels(string sentence)
+        static string OnlyVowels(string d)
         {
-            sentence = sentence.ToLower();
-            for (int i = 0; i < sentence.Length; i++)
+            d = d.ToLower();
+            for (int i = 0; i < d.Length; i++)
             {
-                if (sentence[i] != 'a' && sentence[i] != 'e' && sentence[i] != 'i' && sentence[i] != 'o' && sentence[i] != 'u' && sentence[i] != 'y' && sentence[i] != 'ä' && sentence[i] != 'ö')
+                if (d[i] != 'a' && d[i] != 'e' && d[i] != 'i' && d[i] != 'o' && d[i] != 'u' && d[i] != 'y' && d[i] != 'ä' && d[i] != 'ö')
                 {
-                    sentence = sentence.Remove(i, 1);
+                    d = d.Remove(i, 1);
                     i--;
                 }
             }
-            return sentence;
+            return d;
+        }
+        /// <summary>
+        /// Removes vowels from string.
+        /// Returns string without vowels.
+        /// sentence = any string
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        static string VowelsRemovedClass(string d)
+        {
+            string vowels = "aieouyöä";
+            d = d.ToLower();
+
+            for (int i = 0; i < d.Length; i++)
+            {
+                for (int j = 0; j < vowels.Length; j++)
+                {
+                    if (d[i] == vowels[j])
+                    {
+                        d = d.Remove(i, 1);
+                        i--;
+                    }
+                }
+            }
+            return d;
         }
     }
 }
