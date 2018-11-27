@@ -9,6 +9,7 @@ namespace id_number
             string idNr = UserInput();
             char checkMark = CalculateLastChar(idNr);
 
+            IdDateChecker(idNr);
             Console.WriteLine(IdNumberChecker(idNr, checkMark));
 
         }
@@ -32,42 +33,43 @@ namespace id_number
         /// <returns></returns>
         static string UserInput()
         {
-            Console.Write("Syötä henkikötunnus muodossa (PPKKVV-XXXQ): ");  
+            Console.Write("Syötä henkikötunnus muodossa (PPKKVV-XXXQ): ");
             return Console.ReadLine().ToUpper();
         }
-
-        /*static bool IdDateChecker(string id)
+        /// <summary>
+        /// Checks if the date in idNumber is right.
+        /// </summary>
+        /// <param name="id"></param>
+        static int IdDateChecker(string id)
         {
-            string dateAndMonth = "";
-
             int day = int.Parse(id.Substring(0, 2));
             int month = int.Parse(id.Substring(2, 2));
+            int year = int.Parse(id.Substring(4, 2));
 
-            if (month > 0 && month < 13 && day > 0 && day < 32)
+            if (id[6] == '-')
             {
-                if (month == 2 && day < 30 )
-                {
-                    dateAndMonth = "Päivä ja kuukausi on oikein";
-                    return true;
-                }
-                else if (month == 4 || month == 6 || month == 9 || month == 11 && day < 31)
-                {
-                    dateAndMonth = "Päivä ja kukkausi on oikein";
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-                
+                year += 1900;
             }
-            else
+            else if (id[6] == 'A')
             {
-                dateAndMonth = "Päivä tai kuukausi on väärin";
-                return false;
+                year += 2000;
             }
-        }*/
-
+            else if (id[6] == '+')
+            {
+                year += 1800;
+            }
+            int correct = 1;
+            try
+            {
+                DateTime d = new DateTime(year, month, day);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                correct = 0;
+            }
+            return correct;
+        }
         /// <summary>
         /// Calculates last char of ID number.
         /// Returns last char.
