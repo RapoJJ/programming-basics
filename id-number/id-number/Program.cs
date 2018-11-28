@@ -10,7 +10,7 @@ namespace id_number
             char userChoice;
             do
             {
-                userChoice = char.ToUpper(UserInterface());
+                userChoice = UserInterface();
                 Console.WriteLine();
                 switch (userChoice)
                 {
@@ -68,7 +68,7 @@ namespace id_number
             Console.WriteLine("[X] Sulje ohjelma.");
             Console.Write("Valitse mitä tehdään: ");
 
-            return Console.ReadKey().KeyChar;
+            return char.ToUpper(Console.ReadKey().KeyChar);
         }
         /// <summary>
         /// Asks user for input, returns it as string
