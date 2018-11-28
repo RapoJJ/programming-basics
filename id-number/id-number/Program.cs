@@ -33,7 +33,7 @@ namespace id_number
                             if (IdDateChecker(idNr))
                             {
                                 Console.WriteLine($"Henkilötunnuksen tarkiste merkki on: {CalculateLastChar(idNr)}");
-                                Console.WriteLine($"Henkilötunnus kokonaisuudessaan {idNr}{CalculateLastChar(idNr)}");
+                                Console.WriteLine($"Henkilötunnus kokonaisuudessaan: {idNr}{CalculateLastChar(idNr)}");
                             }
                             else
                             {
@@ -155,7 +155,7 @@ namespace id_number
             }
             else
                 Console.WriteLine("Et syöttänyt koko henkikötunnusta!");
-            return $"Henkilötunnus on kokonaisuudessaan {id}{lastChar}";
+            return $"Henkilötunnus on kokonaisuudessaan: {id}{lastChar}";
         }
     }
 }
