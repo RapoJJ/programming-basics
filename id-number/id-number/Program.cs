@@ -41,6 +41,10 @@ namespace id_number
                             }
                             break;
                         }
+                    case 'X':
+                        {
+                            break;
+                        }
                     default:
                         {
                             Console.WriteLine("Väärä valinta!");
@@ -151,7 +155,7 @@ namespace id_number
             }
             else
                 Console.WriteLine("Et syöttänyt koko henkikötunnusta!");
-                return $"Henkilötunnus on kokonaisuudessaan {id}{lastChar}";
+            return $"Henkilötunnus on kokonaisuudessaan {id}{lastChar}";
         }
     }
 }
