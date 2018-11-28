@@ -10,8 +10,8 @@ namespace id_number
             char userChoice;
             do
             {
-                userChoice = char.Parse(UserInterface());
-
+                userChoice = char.ToUpper(UserInterface());
+                Console.WriteLine();
                 switch (userChoice)
                 {
                     case 'T':
@@ -19,7 +19,7 @@ namespace id_number
                             idNr = UserInput();
                             if (IdDateChecker(idNr))
                             {
-                                Console.WriteLine(IdNumberChecker(idNr, CalculateLastChar(idNr))); 
+                                Console.WriteLine(IdNumberChecker(idNr, CalculateLastChar(idNr)));
                             }
                             else
                             {
@@ -29,10 +29,21 @@ namespace id_number
                         }
                     case 'U':
                         {
-                            Console.Write("Syötä henkikötunnuksen alkuosa muodossa (PPKKVV-XXX): ");
-                            idNr = Console.ReadLine().ToUpper();
-                            Console.WriteLine($"Henkilötunnuksen tarkiste merkki on: {CalculateLastChar(idNr)}");
-                            Console.WriteLine($"Henkilötunnus kokonaisuudessaan {idNr}{CalculateLastChar(idNr)}");
+                            idNr = UserInput();
+                            if (IdDateChecker(idNr))
+                            {
+                                Console.WriteLine($"Henkilötunnuksen tarkiste merkki on: {CalculateLastChar(idNr)}");
+                                Console.WriteLine($"Henkilötunnus kokonaisuudessaan {idNr}{CalculateLastChar(idNr)}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Päivämäärä ei ole mahdollinen!");
+                            }
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("Väärä valinta!");
                             break;
                         }
                 }
@@ -45,7 +56,7 @@ namespace id_number
         /// User Interface
         /// </summary>
         /// <returns></returns>
-        static string UserInterface()
+        static char UserInterface()
         {
             Console.WriteLine("Henkilötunnuksen käsittely.");
             Console.WriteLine("[T] Tarkista henkikötunnuksen oikeellisuus.");
@@ -53,7 +64,7 @@ namespace id_number
             Console.WriteLine("[X] Sulje ohjelma.");
             Console.Write("Valitse mitä tehdään: ");
 
-            return Console.ReadLine().ToUpper();
+            return Console.ReadKey().KeyChar;
         }
         /// <summary>
         /// Asks user for input, returns it as string
@@ -61,8 +72,20 @@ namespace id_number
         /// <returns></returns>
         static string UserInput()
         {
-            Console.Write("Syötä henkikötunnus muodossa (PPKKVV-XXXQ): ");
-            return Console.ReadLine().ToUpper();
+
+            Console.Write("Syötä henkikötunnus tai sen alkuosa muodossa (PPKKVV-XXX[Q]): ");
+            string id = Console.ReadLine().ToUpper();
+            while (true)
+            {
+                if (id.Length == 10 || id.Length == 11)
+                    return id;
+                else
+                {
+                    Console.WriteLine("Henkilötunnus ei ole oikean pituinen.");
+                    Console.Write("Syötä uusi henkilötunnus tai sen alkuosa (PPKKVV-XXX[Q]): ");
+                    id = Console.ReadLine().ToUpper();
+                }
+            }
         }
         /// <summary>
         /// Checks if the date in idNumber is right.
@@ -73,6 +96,7 @@ namespace id_number
             int day = int.Parse(id.Substring(0, 2));
             int month = int.Parse(id.Substring(2, 2));
             int year = int.Parse(id.Substring(4, 2));
+
             string centuryChar = "+-ABCDEFGH";
             int j = 0;
             int centuryInt = 1800;
@@ -84,24 +108,12 @@ namespace id_number
                 }
                 j += 100;
             }
-            /*if (id[6] == '-')
-            {
-                year += 1900;
-            }
-            else if (id[6] == 'A')
-            {
-                year += 2000;
-            }
-            else if (id[6] == '+')
-            {
-                year += 1800;
-            }*/
             bool correct = true;
             try
             {
                 DateTime d = new DateTime(year, month, day);
             }
-            catch (Exception)
+            catch
             {
                 correct = false;
             }
@@ -128,13 +140,18 @@ namespace id_number
         /// <returns></returns>
         static string IdNumberChecker(string id, char lastChar)
         {
-            char idLastChar = id[10];
-            if (idLastChar == lastChar)
+            if (id.Length == 11)
             {
-                return "Henkilötunnus on oikea.";
+                if (id[10] == lastChar)
+                {
+                    return "Henkilötunnus on oikea.";
+                }
+                else
+                    return "Henkikötunnus on väärä.";
             }
             else
-                return "Henkikötunnus on väärä.";
+                Console.WriteLine("Et syöttänyt koko henkikötunnusta!");
+                return $"Henkilötunnus on kokonaisuudessaan {id}{lastChar}";
         }
     }
 }
