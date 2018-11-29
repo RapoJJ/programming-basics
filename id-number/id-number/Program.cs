@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace id_number
 {
@@ -81,11 +82,12 @@ namespace id_number
             string id = Console.ReadLine().ToUpper();
             while (true)
             {
-                if (id.Length == 10 || id.Length == 11)
+                //if (id.Length == 10 || id.Length == 11)
+                if (new Regex("\\d{6}[-+ABCDEFGH]\\d{3}[0-9A-Y]?").IsMatch(id))
                     return id;
                 else
                 {
-                    Console.WriteLine("Henkilötunnus ei ole oikean pituinen.");
+                    Console.WriteLine("Henkilötunnus ei ole oikeassa muodossa!");
                     Console.Write("Syötä uusi henkilötunnus tai sen alkuosa (PPKKVV-XXX[Q]): ");
                     id = Console.ReadLine().ToUpper();
                 }
