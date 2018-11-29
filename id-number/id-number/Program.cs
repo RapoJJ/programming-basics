@@ -21,6 +21,7 @@ namespace id_number
                             if (IdDateChecker(idNr))
                             {
                                 Console.WriteLine(IdNumberChecker(idNr, CalculateLastChar(idNr)));
+                                Console.WriteLine($"Henkilö on {IdGenderChecker(idNr)}.");
                             }
                             else
                             {
@@ -35,6 +36,7 @@ namespace id_number
                             {
                                 Console.WriteLine($"Henkilötunnuksen tarkiste merkki on: {CalculateLastChar(idNr)}");
                                 Console.WriteLine($"Henkilötunnus kokonaisuudessaan: {idNr}{CalculateLastChar(idNr)}");
+                                Console.WriteLine($"Henkilö on {IdGenderChecker(idNr)}.");
                             }
                             else
                             {
@@ -84,7 +86,9 @@ namespace id_number
             {
                 //if (id.Length == 10 || id.Length == 11)
                 if (new Regex("\\d{6}[-+ABCDEFGH]\\d{3}[0-9A-Y]?").IsMatch(id))
+                {
                     return id;
+                }
                 else
                 {
                     Console.WriteLine("Henkilötunnus ei ole oikeassa muodossa!");
@@ -102,19 +106,18 @@ namespace id_number
             int day = int.Parse(id.Substring(0, 2));
             int month = int.Parse(id.Substring(2, 2));
             int year = int.Parse(id.Substring(4, 2));
-
+            bool correct = true;
             string centuryChar = "+-ABCDEFGH";
             int j = 0;
             int centuryInt = 1800;
             for (int i = 0; i < centuryChar.Length; i++)
             {
-                if (id.Contains(centuryChar[i]))
+                if (id[7] == centuryChar[i])
                 {
                     year += centuryInt + i * j;
                 }
                 j += 100;
             }
-            bool correct = true;
             try
             {
                 DateTime d = new DateTime(year, month, day);
@@ -153,12 +156,28 @@ namespace id_number
                     return "Henkilötunnus on oikea.";
                 }
                 else
+                {
                     return "Henkikötunnus on väärä.";
+                }
             }
             else
-                
-            return $"Et syöttänyt koko henkikötunnusta!\n" +
-                    $"Henkilötunnus on kokonaisuudessaan: {id}{lastChar}";
+            {
+                return $"Et syöttänyt koko henkikötunnusta!\n" +
+                        $"Henkilötunnus on kokonaisuudessaan: {id}{lastChar}";
+            }
+        }
+        static string IdGenderChecker(string id)
+        {
+            int genderNr = id[9];
+
+            if (genderNr % 2 == 0)
+            {
+                return "nainen";
+            }
+            else
+            {
+                return "mies";
+            }
         }
     }
 }
