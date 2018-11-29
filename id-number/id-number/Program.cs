@@ -154,8 +154,9 @@ namespace id_number
                     return "Henkikötunnus on väärä.";
             }
             else
-                Console.WriteLine("Et syöttänyt koko henkikötunnusta!");
-            return $"Henkilötunnus on kokonaisuudessaan: {id}{lastChar}";
+                
+            return $"Et syöttänyt koko henkikötunnusta!\n" +
+                    $"Henkilötunnus on kokonaisuudessaan: {id}{lastChar}";
         }
     }
 }
