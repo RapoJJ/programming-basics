@@ -166,6 +166,12 @@ namespace id_number
                         $"Henkilötunnus on kokonaisuudessaan: {id}{lastChar}";
             }
         }
+        /// <summary>
+        /// Checks if ID numbers last digit is even (Woman) or odd (Man).
+        /// Return gender as string.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         static string IdGenderChecker(string id)
         {
             int genderNr = id[9];
