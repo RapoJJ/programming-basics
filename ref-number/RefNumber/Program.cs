@@ -6,9 +6,10 @@ namespace ref_number
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(RefNumberChecker(UserInput()));
-            
+            int[] factor = new int[] { 7, 3, 1 };
+            //Console.WriteLine(RefNumberChecker(UserInput()));
 
+            Console.WriteLine(RefNumberCreator(UserInput(), factor));
         }
         static char UserInterface()
         {
@@ -24,16 +25,15 @@ namespace ref_number
             Console.Write("Syötä viitenumero: ");
             return Console.ReadLine();
         }
-        static bool RefNumberChecker(string number)
+        static bool RefNumberChecker(string number, int[] fact)
         {
-            int[] factor = new int[] { 7, 3, 1 };
             int sum = 0;
             int j = number.Length - 2;
 
             for (int i = 0; i < number.Length - 1; i++)
             {
                 int nr = Convert.ToInt32(number[j].ToString());
-                sum += nr * factor[i % 3];
+                sum += nr * fact[i % 3];
                 j--;
             }
             int checkNumber = 10 - (sum % 10);
@@ -46,6 +46,26 @@ namespace ref_number
             {
                 return false;
             }
+        }
+        static string RefNumberCreator(string number, int[] fact)
+        {
+            int sum = 0;
+            int j = number.Length - 1;
+
+            for (int i = 0; i < number.Length; i++)
+            {
+                int nr = Convert.ToInt32(number[j].ToString());
+                sum += nr * fact[i % 3];
+                j--;
+            }
+            int checkNumber = 10 - (sum % 10);
+
+            number += checkNumber;
+            return number;
+        }
+        static void RefNumberGenerator()
+        {
+
         }
     }
 }
