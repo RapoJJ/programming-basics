@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace ref_number
 {
@@ -17,6 +18,8 @@ namespace ref_number
             {
                 Console.WriteLine(nr[i]);
             }
+
+            WriteToFile(nr);
         }
         static ConsoleKeyInfo UserInterface()
         {
@@ -121,7 +124,8 @@ namespace ref_number
             return refNumbers;
         }
         /// <summary>
-        /// 
+        /// Adds check number to the end of every Ref Number in array.
+        /// Returns array of completed reference numbers.
         /// </summary>
         /// <param name="numbers"></param>
         /// <param name="fact"></param>
@@ -132,22 +136,26 @@ namespace ref_number
             for (int i = 0; i < numbers.Length; i++)
             {
                 number = numbers[i];
-                int sum = 0;
-                int k = number.Length - 1;
-                for (int j = 0; j < number.Length; j++)
-                {
-                    int nr = Convert.ToInt32(number[k].ToString());
-                    sum += nr * fact[j % 3];
-                    k--;
-                }
-                int checkNumber = 10 - (sum % 10);
-                if (checkNumber == 10)
-                {
-                    checkNumber = 0;
-                }
-                numbers[i] = number + checkNumber;
+                numbers[i] = RefNumberCreator(number, fact);
             }
             return numbers;
         }
+        /// <summary>
+        /// Writes every ref number to .txt file.
+        /// </summary>
+        /// <param name="numbers"></param>
+        static void WriteToFile(string[] numbers)
+        {
+            string path = @"C:\TEMP\refNumbers.txt";
+            StreamWriter R = new StreamWriter(path);
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                R.WriteLine(numbers[i]);
+                
+            }
+            R.Close();
+        }
+
     }
 }
