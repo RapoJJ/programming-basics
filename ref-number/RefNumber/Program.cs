@@ -7,16 +7,18 @@ namespace ref_number
     {
         static void Main(string[] args)
         {
+            string path = @"C:\TEMP\referencenumber.txt";
             int[] factor = new int[] { 7, 3, 1 };
             ConsoleKeyInfo cki;
 
             do
             {
                 cki = UserInterface();
+                Console.WriteLine();
                 switch (cki.Key)
                 {
                     case ConsoleKey.T:
-                        if (RefNumberChecker(UserInput("\nSyötä viitenumero: ", 4), factor))
+                        if (RefNumberChecker(UserInput("Syötä viitenumero: ", 4), factor))
                         {
                             Console.WriteLine("Viitenumero on oikein.");
                         }
@@ -27,26 +29,28 @@ namespace ref_number
                         break;
 
                     case ConsoleKey.L:
-                        Console.WriteLine($"Viitenumero kokonaisuudessaan: {RefNumberCreator(UserInput("\nSyötä viitenumeron alkuosa: ", 3), factor)}");
+                        Console.WriteLine($"Viitenumero kokonaisuudessaan: {RefNumberCreator(UserInput("Syötä viitenumeron alkuosa: ", 3), factor)}");
                         break;
 
                     case ConsoleKey.M:
-                        Console.WriteLine();
                         string[] nr = RefNumberGenerator(BaseRefNumberGenerator(), factor);
                         Console.WriteLine("Luotiin seuraavat viitenumerot:");
                         for (int i = 0; i < nr.Length; i++)
                         {
                             Console.WriteLine(nr[i]);
                         }
-                        WriteToFile(nr);
+                        WriteToFile(nr, path);
                         break;
-
+                    case ConsoleKey.N:
+                        ReadFile(path);
+                        break;
+                        
                     case ConsoleKey.Escape:
-                        Console.WriteLine("\nOhjelma suljetaan.");
+                        Console.WriteLine("Ohjelma suljetaan.");
                         break;
 
                     default:
-                        Console.WriteLine("\nVäärä valinta!");
+                        Console.WriteLine("Väärä valinta!");
                         break;
                 }
                 Console.WriteLine("Press anykey!");
@@ -54,9 +58,6 @@ namespace ref_number
                 Console.Clear();
             } while (cki.Key != ConsoleKey.Escape);
 
-            /*string test = UserInput("Testi     ");
-            test = StringSplitter(test);
-            Console.WriteLine(test);*/
         }
         static ConsoleKeyInfo UserInterface()
         {
@@ -72,6 +73,8 @@ namespace ref_number
         /// <summary>
         /// Asks user for input.
         /// Returns string.
+        /// askInput = string which defines what user is inputting.
+        /// lenght = min length allowed for input.
         /// </summary>
         /// <returns></returns>
         static string UserInput(string askInput, int length)
@@ -97,14 +100,13 @@ namespace ref_number
                 else
                 {
                     Console.WriteLine("Syötteen pitää olla luku.");
-                    //Console.Write("Yritä uudestaan: ");
-                    //input = Console.ReadLine();
                 }
             }
         }
         /// <summary>
         /// Checks if Reference number is correct.
         /// Returns result as boolean.
+        /// number = reference number as string.
         /// </summary>
         /// <param name="number"></param>
         /// <param name="fact"></param>
@@ -139,6 +141,7 @@ namespace ref_number
         /// <summary>
         /// Creates one reference number.
         /// Returns reference number as string.
+        /// number = reference number as string.
         /// </summary>
         /// <param name="number"></param>
         /// <param name="fact"></param>
@@ -171,7 +174,7 @@ namespace ref_number
         static string[] BaseRefNumberGenerator()
         {
             string baseNumber = UserInput("Syötä viitenumeron alkuosa: ", 3);
-            int count = int.Parse(UserInput("Syötä viitenumeroiden määrä: ", 0));
+            int count = int.Parse(UserInput("Syötä viitenumeroiden määrä: ", 1));
             string[] refNumbers = new string[count];
             int j;
 
@@ -185,6 +188,7 @@ namespace ref_number
         /// <summary>
         /// Adds check number to the end of every Ref Number in array.
         /// Returns array of completed reference numbers.
+        /// numbers = array of base reference numbers
         /// </summary>
         /// <param name="numbers"></param>
         /// <param name="fact"></param>
@@ -198,21 +202,6 @@ namespace ref_number
                 numbers[i] = RefNumberCreator(number, fact);
             }
             return numbers;
-        }
-        /// <summary>
-        /// Writes every ref number to .txt file.
-        /// </summary>
-        /// <param name="numbers"></param>
-        static void WriteToFile(string[] numbers)
-        {
-            string path = @"C:\TEMP\referencenumber.txt";
-            StreamWriter R = new StreamWriter(path);
-
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                R.WriteLine(numbers[i]);
-            }
-            R.Close();
         }
         /// <summary>
         /// Adds a space every 5th char to string from right to left.
@@ -232,6 +221,46 @@ namespace ref_number
                 j--;
             }
             return str;
+        }
+        /// <summary>
+        /// Writes every ref number to .txt file.
+        /// path = path of the file.
+        /// </summary>
+        /// <param name="numbers"></param>
+        static void WriteToFile(string[] numbers, string path)
+        {           
+            StreamWriter R = new StreamWriter(path);
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                R.WriteLine(numbers[i]);
+            }
+            R.Close();
+        }
+        /// <summary>
+        /// Reads data from file.
+        /// path = path of the file.
+        /// </summary>
+        /// <param name="path"></param>
+        static void ReadFile(string path)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string line;
+
+                    Console.WriteLine("Aikaisemmin luodut viitenumerot: ");
+                    while ((line = sr.ReadLine()) != null )
+                    {
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Tapahtui virhe: { ex.Message}");
+            }
         }
     }
 }
