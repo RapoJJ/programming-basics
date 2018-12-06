@@ -8,25 +8,64 @@ namespace ref_number
         static void Main(string[] args)
         {
             int[] factor = new int[] { 7, 3, 1 };
-            //Console.WriteLine(RefNumberCreator(UserInput(), factor));
-            //Console.WriteLine(RefNumberChecker(UserInput(), factor));
+            ConsoleKeyInfo cki;
 
-            string[] nr = RefNumberGenerator(BaseRefNumberGenerator(), factor);
-
-
-            for (int i = 0; i < nr.Length; i++)
+            do
             {
-                Console.WriteLine(nr[i]);
-            }
+                cki = UserInterface();
+                switch (cki.Key)
+                {
+                    case ConsoleKey.T:
+                        if (RefNumberChecker(UserInput("\nSyötä viitenumero: "), factor))
+                        {
+                            Console.WriteLine("Viitenumero on oikein.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Viitenumero on väärä.");
+                        }
+                        break;
 
-            WriteToFile(nr);
+                    case ConsoleKey.L:
+                        Console.WriteLine($"Viitenumero kokonaisuudessaan: {RefNumberCreator(UserInput("\nSyötä viitenumeron alkuosa: "), factor)}");
+                        break;
+
+                    case ConsoleKey.M:
+                        Console.WriteLine();
+                        string[] nr = RefNumberGenerator(BaseRefNumberGenerator(), factor);
+                        Console.WriteLine("Luotiin seuraavat viitenumerot:");
+                        for (int i = 0; i < nr.Length; i++)
+                        {
+                            Console.WriteLine(nr[i]);
+                        }
+                        WriteToFile(nr);
+                        break;
+
+                    case ConsoleKey.Escape:
+                        Console.WriteLine("\nOhjelma suljetaan.");
+                        break;
+
+                    default:
+                        Console.WriteLine("\nVäärä valinta!");
+                        break;
+                }
+                Console.WriteLine("Press anykey!");
+                Console.ReadKey();
+                Console.Clear();
+            } while (cki.Key != ConsoleKey.Escape);
+
+            /*string test = UserInput("Testi     ");
+            test = StringSplitter(test);
+            Console.WriteLine(test);*/
         }
         static ConsoleKeyInfo UserInterface()
         {
             Console.WriteLine("[T] Tarkasta viitenumero.");
-            Console.WriteLine("[L] Luo viitenumeroita haluttu määrä.");
-            Console.WriteLine("[X] Sulje ohjelma.");
-            Console.Write("Syötä valinta:");
+            Console.WriteLine("[L] Luo yksi viitenumero.");
+            Console.WriteLine("[M] Luo viitenumeroita haluttu määrä ja tallenna ne referencenumber tiedostoon.");
+            Console.WriteLine("[N] Lue viitenumerot tiedostosta, jotka tehtiin viime kerralla.");
+            Console.WriteLine("[Esc] Sulje ohjelma.");
+            Console.Write("Syötä valinta: ");
 
             return Console.ReadKey();
         }
@@ -35,9 +74,9 @@ namespace ref_number
         /// Returns string.
         /// </summary>
         /// <returns></returns>
-        static string UserInput()
+        static string UserInput(string askInput)
         {
-            Console.Write("Syötä viitenumero: ");
+            Console.Write(askInput);
             return Console.ReadLine();
         }
         /// <summary>
@@ -98,6 +137,7 @@ namespace ref_number
                 checkNumber = 0;
             }
             number += checkNumber;
+            number = StringSplitter(number);
             return number;
         }
         /// <summary>
@@ -107,12 +147,8 @@ namespace ref_number
         /// <returns></returns>
         static string[] BaseRefNumberGenerator()
         {
-            Console.Write("Syötä viitenumeron alkuosa: ");
-            string baseNumber = Console.ReadLine();
-
-            Console.Write("Syötä viitenumeroiden määrä: ");
-            int count = int.Parse(Console.ReadLine());
-
+            string baseNumber = UserInput("Syötä viitenumeron alkuosa: ");
+            int count = int.Parse(UserInput("Syötä viitenumeroiden määrä: "));
             string[] refNumbers = new string[count];
             int j;
 
@@ -132,7 +168,7 @@ namespace ref_number
         /// <returns></returns>
         static string[] RefNumberGenerator(string[] numbers, int[] fact)
         {
-            string number = "";
+            string number;
             for (int i = 0; i < numbers.Length; i++)
             {
                 number = numbers[i];
@@ -146,16 +182,33 @@ namespace ref_number
         /// <param name="numbers"></param>
         static void WriteToFile(string[] numbers)
         {
-            string path = @"C:\TEMP\refNumbers.txt";
+            string path = @"C:\TEMP\referencenumber.txt";
             StreamWriter R = new StreamWriter(path);
 
             for (int i = 0; i < numbers.Length; i++)
             {
                 R.WriteLine(numbers[i]);
-                
             }
             R.Close();
         }
-
+        /// <summary>
+        /// Adds a space every 5th char to string from right to left.
+        /// Returns string with spaces.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        static string StringSplitter(string str)
+        {
+            int j = str.Length - 1;
+            for (int i = 1; i < str.Length; i++)
+            {
+                if (i % 5 == 0 && j > 0)
+                {
+                    str = str.Insert(j, " ");
+                }
+                j--;
+            }
+            return str;
+        }
     }
 }
