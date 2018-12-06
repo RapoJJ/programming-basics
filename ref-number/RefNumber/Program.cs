@@ -16,7 +16,7 @@ namespace ref_number
                 switch (cki.Key)
                 {
                     case ConsoleKey.T:
-                        if (RefNumberChecker(UserInput("\nSyötä viitenumero: "), factor))
+                        if (RefNumberChecker(UserInput("\nSyötä viitenumero: ", 4), factor))
                         {
                             Console.WriteLine("Viitenumero on oikein.");
                         }
@@ -27,7 +27,7 @@ namespace ref_number
                         break;
 
                     case ConsoleKey.L:
-                        Console.WriteLine($"Viitenumero kokonaisuudessaan: {RefNumberCreator(UserInput("\nSyötä viitenumeron alkuosa: "), factor)}");
+                        Console.WriteLine($"Viitenumero kokonaisuudessaan: {RefNumberCreator(UserInput("\nSyötä viitenumeron alkuosa: ", 3), factor)}");
                         break;
 
                     case ConsoleKey.M:
@@ -74,10 +74,33 @@ namespace ref_number
         /// Returns string.
         /// </summary>
         /// <returns></returns>
-        static string UserInput(string askInput)
-        {
-            Console.Write(askInput);
-            return Console.ReadLine();
+        static string UserInput(string askInput, int length)
+        {                  
+            while (true)
+            {
+                Console.Write(askInput);
+                string input = Console.ReadLine();
+                bool isNumber = int.TryParse(input, out int number);
+                if (isNumber)
+                {
+                    if (input.Length >= length)
+                    {
+                        return input;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Viitenumeron pitää olla vähintään 4 numeroinen (3 + tarkiste)!");
+                        Console.Write("Yritä uudestaan: ");
+                        input = Console.ReadLine();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Syötteen pitää olla luku.");
+                    //Console.Write("Yritä uudestaan: ");
+                    //input = Console.ReadLine();
+                }
+            }
         }
         /// <summary>
         /// Checks if Reference number is correct.
@@ -147,8 +170,8 @@ namespace ref_number
         /// <returns></returns>
         static string[] BaseRefNumberGenerator()
         {
-            string baseNumber = UserInput("Syötä viitenumeron alkuosa: ");
-            int count = int.Parse(UserInput("Syötä viitenumeroiden määrä: "));
+            string baseNumber = UserInput("Syötä viitenumeron alkuosa: ", 3);
+            int count = int.Parse(UserInput("Syötä viitenumeroiden määrä: ", 0));
             string[] refNumbers = new string[count];
             int j;
 
