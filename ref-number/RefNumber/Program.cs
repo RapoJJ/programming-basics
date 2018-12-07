@@ -33,18 +33,39 @@ namespace ref_number
                         break;
 
                     case ConsoleKey.M:
-                        string[] nr = RefNumberGenerator(BaseRefNumberGenerator(), factor);
-                        Console.WriteLine("Luotiin seuraavat viitenumerot:");
-                        for (int i = 0; i < nr.Length; i++)
+                        Console.Clear();
+                        cki = InterfaceTwo();
+                        Console.WriteLine();
+                        switch (cki.Key)
                         {
-                            Console.WriteLine(nr[i]);
+                            case ConsoleKey.D1:
+                                string[] nr = RefNumberGenerator(BaseRefNumberGenerator(), factor);
+                                Console.WriteLine("Luotiin seuraavat viitenumerot:");
+                                for (int i = 0; i < nr.Length; i++)
+                                {
+                                    Console.WriteLine(nr[i]);
+                                }
+                                WriteToFile(nr, path);
+                                break;
+
+                            case ConsoleKey.D2:
+                                string[] no = RandomRefNumberGenerator(factor);
+                                Console.WriteLine("Luotiin seuraavat viitenumerot:");
+                                for (int i = 0; i < no.Length; i++)
+                                {
+                                    Console.WriteLine(no[i]);
+                                }
+                                WriteToFile(no, path);
+                                break;
+                            default:
+                                Console.WriteLine("Väärä valinta!!");
+                                break;
                         }
-                        WriteToFile(nr, path);
                         break;
-                    case ConsoleKey.N:
+                    case ConsoleKey.R:
                         ReadFile(path);
                         break;
-                        
+
                     case ConsoleKey.Escape:
                         Console.WriteLine("Ohjelma suljetaan.");
                         break;
@@ -64,7 +85,7 @@ namespace ref_number
             Console.WriteLine("[T] Tarkasta viitenumero.");
             Console.WriteLine("[L] Luo yksi viitenumero.");
             Console.WriteLine("[M] Luo viitenumeroita haluttu määrä ja tallenna ne referencenumber tiedostoon.");
-            Console.WriteLine("[N] Lue viitenumerot tiedostosta, jotka tehtiin viime kerralla.");
+            Console.WriteLine("[R] Lue viitenumerot tiedostosta, jotka tehtiin viime kerralla.");
             Console.WriteLine("[Esc] Sulje ohjelma.");
             Console.Write("Syötä valinta: ");
 
@@ -78,7 +99,7 @@ namespace ref_number
         /// </summary>
         /// <returns></returns>
         static string UserInput(string askInput, int length)
-        {                  
+        {
             while (true)
             {
                 Console.Write(askInput);
@@ -228,7 +249,7 @@ namespace ref_number
         /// </summary>
         /// <param name="numbers"></param>
         static void WriteToFile(string[] numbers, string path)
-        {           
+        {
             StreamWriter R = new StreamWriter(path);
 
             for (int i = 0; i < numbers.Length; i++)
@@ -249,9 +270,8 @@ namespace ref_number
                 using (StreamReader sr = new StreamReader(path))
                 {
                     string line;
-
                     Console.WriteLine("Aikaisemmin luodut viitenumerot: ");
-                    while ((line = sr.ReadLine()) != null )
+                    while ((line = sr.ReadLine()) != null)
                     {
                         Console.WriteLine(line);
                     }
@@ -261,6 +281,45 @@ namespace ref_number
             {
                 Console.WriteLine($"Tapahtui virhe: { ex.Message}");
             }
+        }
+        /// <summary>
+        /// Creates Random reference number that is 3-20 characters.
+        /// Returns array of created reference numbers.
+        /// </summary>
+        /// <param name="fact"></param>
+        /// <returns></returns>
+        static string[] RandomRefNumberGenerator(int[] fact)
+        {
+            Random rnd = new Random();
+            int count = int.Parse(UserInput("Syötä viitenumeroiden määrä: ", 1));
+            string[] refNumbers = new string[count];
+            string number = "";
+            int random;
+            for (int i = 0; i < refNumbers.Length; i++)
+            {
+                random = rnd.Next(3, 20);
+                number = "";
+                for (int j = 0; j < random; j++)
+                {
+                    number += rnd.Next(1, 9);
+                }
+                refNumbers[i] = number;
+            }
+            refNumbers = RefNumberGenerator(refNumbers, fact);
+            return refNumbers;
+        }
+        /// <summary>
+        /// User Interface for creating reference numbers.
+        /// Returns key pressed.
+        /// </summary>
+        /// <returns></returns>
+        static ConsoleKeyInfo InterfaceTwo()
+        {
+            Console.WriteLine("Valitse luodaanko viitenumerot samalla alkuosalla vai kokonaan satunnaisena.");
+            Console.WriteLine("[1] Syötä viitenumeron alkuosa.");
+            Console.WriteLine("[2] Luo kokonaan satunnaiset viitenumerot.");
+            Console.Write("Syötä valinta: ");
+            return Console.ReadKey();
         }
     }
 }
