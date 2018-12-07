@@ -17,7 +17,7 @@ namespace ref_number
                 Console.WriteLine();
                 switch (cki.Key)
                 {
-                    case ConsoleKey.D1:
+                    case ConsoleKey.F1:
                         if (RefNumberChecker(UserInput("Syötä viitenumero: ", 4), factor))
                         {
                             Console.WriteLine("Viitenumero on oikein.");
@@ -28,33 +28,15 @@ namespace ref_number
                         }
                         break;
 
-                    case ConsoleKey.D2:
+                    case ConsoleKey.F2:
                         Console.WriteLine($"Viitenumero kokonaisuudessaan: {RefNumberCreator(UserInput("Syötä viitenumeron alkuosa: ", 3), factor)}");
                         break;
 
-                    case ConsoleKey.D3:
-                        Console.Clear();
-                        cki = InterfaceTwo();
-                        Console.WriteLine();
-                        switch (cki.Key)
-                        {
-                            case ConsoleKey.D1:
-                                string[] nr = RefNumberGenerator(BaseRefNumberGenerator(), factor);
-                                RefNumberPrinter(nr);
-                                WriteToFile(nr, path);
-                                break;
-
-                            case ConsoleKey.D2:
-                                string[] no = RandomRefNumberGenerator(factor);
-                                RefNumberPrinter(no);
-                                WriteToFile(no, path);
-                                break;
-                            default:
-                                Console.WriteLine("Väärä valinta!!");
-                                break;
-                        }
+                    case ConsoleKey.F3:
+                        OptionF3(factor, path);
                         break;
-                    case ConsoleKey.D4:
+
+                    case ConsoleKey.F4:
                         ReadFile(path);
                         break;
 
@@ -74,10 +56,10 @@ namespace ref_number
         }
         static ConsoleKeyInfo UserInterface()
         {
-            Console.WriteLine("[1] Tarkasta viitenumero.");
-            Console.WriteLine("[2] Luo yksi viitenumero.");
-            Console.WriteLine("[3] Luo viitenumeroita haluttu määrä ja tallenna ne referencenumber tiedostoon.");
-            Console.WriteLine("[4] Lue viitenumerot tiedostosta, jotka tehtiin viime kerralla.");
+            Console.WriteLine("[F1] Tarkasta viitenumero.");
+            Console.WriteLine("[F2] Luo yksi viitenumero.");
+            Console.WriteLine("[F3] Luo viitenumeroita haluttu määrä ja tallenna ne referencenumber tiedostoon.");
+            Console.WriteLine("[F4] Lue viimeksi luodut viitenumerot referencenumber tiedostosta.");
             Console.WriteLine("[Esc] Sulje ohjelma.");
             Console.Write("Syötä valinta: ");
 
@@ -97,7 +79,7 @@ namespace ref_number
                 Console.Write(askInput);
                 string input = Console.ReadLine();
                 bool isNumber = int.TryParse(input, out int number);
-                if (isNumber)
+                if (isNumber && number > 0)
                 {
                     if (input.Length >= length)
                     {
@@ -106,13 +88,11 @@ namespace ref_number
                     else
                     {
                         Console.WriteLine("Viitenumeron pitää olla vähintään 4 numeroinen (3 + tarkiste)!");
-                        Console.Write("Yritä uudestaan: ");
-                        input = Console.ReadLine();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Syötteen pitää olla luku.");
+                    Console.WriteLine("Syötteessä oli virhe!\nSyöte saa sisältää vain numeroita!");
                 }
             }
         }
@@ -308,8 +288,8 @@ namespace ref_number
         static ConsoleKeyInfo InterfaceTwo()
         {
             Console.WriteLine("Valitse luodaanko viitenumerot samalla alkuosalla vai kokonaan satunnaisena.");
-            Console.WriteLine("[1] Syötä viitenumeron alkuosa.");
-            Console.WriteLine("[2] Luo kokonaan satunnaiset viitenumerot.");
+            Console.WriteLine("[F1] Syötä viitenumeron alkuosa.");
+            Console.WriteLine("[F2] Luo kokonaan satunnaiset viitenumerot.");
             Console.Write("Syötä valinta: ");
             return Console.ReadKey();
         }
@@ -323,6 +303,35 @@ namespace ref_number
             for (int i = 0; i < numbers.Length; i++)
             {
                 Console.WriteLine(numbers[i]);
+            }
+        }
+        /// <summary>
+        /// Function clears console and gives user options to create new reference numbers.
+        /// Uses RefNumberGenerator and RandomRefNumberGenerator.
+        /// </summary>
+        /// <param name="factor"></param>
+        /// <param name="path"></param>
+        static void OptionF3(int[] factor, string path)
+        {
+            Console.Clear();
+            ConsoleKeyInfo cki = InterfaceTwo();
+            Console.WriteLine();
+            switch (cki.Key)
+            {
+                case ConsoleKey.F1:
+                    string[] nr = RefNumberGenerator(BaseRefNumberGenerator(), factor);
+                    RefNumberPrinter(nr);
+                    WriteToFile(nr, path);
+                    break;
+
+                case ConsoleKey.F2:
+                    string[] no = RandomRefNumberGenerator(factor);
+                    RefNumberPrinter(no);
+                    WriteToFile(no, path);
+                    break;
+                default:
+                    Console.WriteLine("Väärä valinta!!");
+                    break;
             }
         }
     }
