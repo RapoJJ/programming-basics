@@ -23,21 +23,28 @@ namespace Recap1
                 else
                 {
                     number1 = number2;
-                    sum += number2;                
+                    sum += number2;
                 }
             }
             Console.WriteLine($"Syötettyjen lukujen summa: {sum}");
-            
+
         }
+        /// <summary>
+        /// Asks user to input number.
+        /// Returns only numbers.
+        /// </summary>
+        /// <returns></returns>
         static int UserInput()
         {
             while (true)
-            { 
-            Console.Write("Syötä luku: ");
-            bool isNumber = int.TryParse(Console.ReadLine(), out int number);
+            {
+                Console.Write("Syötä luku: ");
+                bool isNumber = int.TryParse(Console.ReadLine(), out int number);
 
-            if (isNumber)
-                return number;
+                if (isNumber)
+                {
+                    return number;
+                }
             }
         }
     }
