@@ -6,11 +6,8 @@ namespace Recap2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Tee ohjelma, joka arpoo satunnaisluvun väliltä 1-100. " +
-                "Ohjelman käyttäjän pitää arvata luku. " +
-                "Ohjelma antaa vihjeitä, onko arvattu luku liian suuri vai pieni. " +
-                "Jos luku ei ole lukualueella siitä tulee virheilmoitus.");
-
+            Console.WriteLine("Arvaa luku väliltä 1-100.");
+            int counter = 0;
             Random rnd = new Random();
             int guessNumber = rnd.Next(100);
             while (true)
@@ -20,6 +17,7 @@ namespace Recap2
                 if (userNumber < 1 || userNumber > 100)
                 {
                     Console.WriteLine("Syöttämäsi luku ei ole alueelta 1-100.");
+                    counter++;
                 }
                 else if (userNumber == guessNumber)
                 {
@@ -29,13 +27,15 @@ namespace Recap2
                 else if (userNumber < guessNumber)
                 {
                     Console.WriteLine("Arvattu luku on liian pieni.");
+                    counter++;
                 }
                 else if (userNumber > guessNumber)
                 {
                     Console.WriteLine("Arvattu luku on liian suuri.");
+                    counter++;
                 }
             }
-            Console.WriteLine($"Oikea luku oli {guessNumber}.");
+            Console.WriteLine($"Oikea luku oli {guessNumber}. Arvaus kertoja ennen oikeaa vastausta oli {counter}");
         }
         static int UserInput()
         {
