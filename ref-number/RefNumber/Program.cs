@@ -48,7 +48,7 @@ namespace ref_number
                         Console.WriteLine("Väärä valinta!");
                         break;
                 }
-                Console.WriteLine("Press anykey!");
+                Console.WriteLine("Paina mitä vain jatkaaksesi!");
                 Console.ReadKey();
                 Console.Clear();
             } while (cki.Key != ConsoleKey.Escape);
@@ -92,7 +92,7 @@ namespace ref_number
                 }
                 else
                 {
-                    Console.WriteLine("Syötteessä oli virhe!\nSyöte saa sisältää vain numeroita!");
+                    Console.WriteLine("Syötteessä oli virhe! Syöte saa sisältää vain numeroita!");
                 }
             }
         }
